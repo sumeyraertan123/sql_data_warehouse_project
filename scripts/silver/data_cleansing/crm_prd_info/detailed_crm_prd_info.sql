@@ -66,6 +66,12 @@ SELECT
 FROM bronze.crm_prd_info
 WHERE prd_key IN ('AC-HE-HL-U509-R', 'AC-HE-HL-U509')
 
+--“Aynı prd_key grubunda, prd_start'a göre sıralanmış listede → bir sonraki satırın prd_start değerini getir.”
+LEAD(prd_start) OVER (
+    PARTITION BY prd_key
+    ORDER BY prd_start
+)
+
 -- yaptığın değişikliklerden sonra DDL scriptini güncellemyi unutma
 
 
